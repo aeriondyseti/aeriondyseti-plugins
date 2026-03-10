@@ -1,7 +1,7 @@
 ---
 name: code-reviewer
 description: "Use when a major feature, task, or project step has been completed and needs review against requirements and coding standards."
-model: inherit
+model: sonnet
 allowed-tools: Read, Grep, Glob, Bash(git *)
 ---
 

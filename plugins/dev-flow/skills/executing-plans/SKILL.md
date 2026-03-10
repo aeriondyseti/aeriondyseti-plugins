@@ -41,6 +41,7 @@ Use `TeamCreate` to set up a team, then:
 4. As teammates complete tasks, assign newly unblocked tasks
 5. Monitor progress via `TaskList` and teammate messages
 6. When a teammate hits a blocker, help resolve it or escalate to the user
+7. **After each wave completes**, run the `code-simplifier` agent on the modified files to refine code for clarity and consistency before moving to the next wave
 
 **Team sizing:** Match the number of teammates to the number of parallel tracks, not the number of tasks. 2-4 teammates is typical. Don't spawn more agents than you have independent work for.
 
@@ -56,8 +57,9 @@ Use the `Task` tool to dispatch subagents for tasks that are fully independent a
 
 1. Launch subagents for all unblocked tasks in parallel
 2. Wait for results
-3. Review outputs before moving to the next wave
-4. Launch the next wave of unblocked tasks
+3. Run the `code-simplifier` agent on the modified files to refine code for clarity and consistency
+4. Review outputs before moving to the next wave
+5. Launch the next wave of unblocked tasks
 
 ### Serial (tightly coupled work)
 
@@ -65,8 +67,9 @@ Execute tasks one at a time:
 
 1. Work through tasks in order
 2. Run verification after each task
-3. Commit after each task (or per the plan's commit strategy)
-4. Checkpoint with the user between logical groups
+3. Run the `code-simplifier` agent on the modified files to refine code for clarity and consistency
+4. Commit after each task (or per the plan's commit strategy)
+5. Checkpoint with the user between logical groups
 
 ## Phase 3: Review Checkpoints
 

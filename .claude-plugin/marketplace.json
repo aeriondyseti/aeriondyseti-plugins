@@ -14,7 +14,7 @@
       "name": "vector-memory",
       "source": "./plugins/vector-memory",
       "description": "RAG-powered session memory with checkpoints for Claude Code",
-      "version": "1.3.0",
+      "version": "1.4.0",
       "author": {
         "name": "AerionDyseti"
       },
@@ -25,7 +25,7 @@
       "name": "dev-flow",
       "source": "./plugins/dev-flow",
       "description": "Structured development workflow skills and agents for Claude Code",
-      "version": "0.1.0",
+      "version": "0.2.0",
       "author": {
         "name": "AerionDyseti"
       },
