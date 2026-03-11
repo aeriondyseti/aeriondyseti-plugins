@@ -1,0 +1,158 @@
+/**
+ * Reusable hook output module for vector-memory hooks.
+ *
+ * Provides:
+ *   - ANSI color/style constants
+ *   - Nerd Font icon constants (single-width glyphs)
+ *   - Formatted systemMessage builder (user-facing)
+ *   - Structured hook output builder (JSON protocol)
+ */
+
+// ── ANSI escape codes ───────────────────────────────────────────────
+
+export const ansi = {
+  reset: "\x1b[0m",
+  bold: "\x1b[1m",
+  dim: "\x1b[2m",
+  italic: "\x1b[3m",
+  underline: "\x1b[4m",
+
+  // Foreground colors
+  red: "\x1b[31m",
+  green: "\x1b[32m",
+  yellow: "\x1b[33m",
+  blue: "\x1b[34m",
+  magenta: "\x1b[35m",
+  cyan: "\x1b[36m",
+  white: "\x1b[37m",
+  gray: "\x1b[90m",
+} as const;
+
+// ── Nerd Font glyphs (single-width) ────────────────────────────────
+
+export const icon = {
+  check: "\uf00c", // nf-fa-check
+  cross: "\uf00d", // nf-fa-close
+  book: "\uf02d", // nf-fa-book
+  branch: "\ue0a0", // Powerline branch
+  clock: "\uf017", // nf-fa-clock_o
+  warning: "\uf071", // nf-fa-warning
+  bolt: "\uf0e7", // nf-fa-bolt
+  brain: "\uf5dc", // nf-mdi-brain
+  search: "\uf002", // nf-fa-search
+  gear: "\uf013", // nf-fa-gear
+  database: "\uf1c0", // nf-fa-database
+  arrow: "\uf061", // nf-fa-arrow_right
+  dot: "\u00b7", // middle dot (standard unicode)
+} as const;
+
+// ── Rule line ───────────────────────────────────────────────────────
+
+const RULE_WIDTH = 42;
+
+/**
+ * Create a horizontal rule with an optional inline title.
+ * e.g. "── Vector Memory ──────────────────────"
+ */
+export function rule(title?: string): string {
+  if (!title) {
+    return `${ansi.cyan}${"─".repeat(RULE_WIDTH)}${ansi.reset}`;
+  }
+  const label = ` ${ansi.bold}${title}${ansi.reset} `;
+  // "── " prefix = 3 visual chars
+  const prefix = `${ansi.cyan}── ${ansi.reset}`;
+  // Calculate remaining dashes (account for title visual length)
+  const remaining = RULE_WIDTH - 3 - title.length - 2; // 2 for spaces around title
+  const suffix = `${ansi.cyan}${"─".repeat(Math.max(1, remaining))}${ansi.reset}`;
+  return `${prefix}${label}${suffix}`;
+}
+
+// ── System message builder ──────────────────────────────────────────
+
+export interface MessageLine {
+  icon?: string;
+  iconColor?: string;
+  text: string;
+}
+
+/**
+ * Build a user-facing systemMessage with horizontal rules and content lines.
+ *
+ * Output format:
+ *   ── Title ──────────────────────────────
+ *     icon text
+ *     icon text
+ *   ──────────────────────────────────────
+ *
+ * Prepends an empty line so the content starts below the hook label prefix.
+ */
+export function buildSystemMessage(
+  title: string,
+  lines: MessageLine[]
+): string {
+  const parts = [
+    "", // push below "HookName says:" prefix
+    rule(title),
+  ];
+
+  for (const line of lines) {
+    if (line.icon) {
+      const color = line.iconColor ?? "";
+      const reset = line.iconColor ? ansi.reset : "";
+      parts.push(`  ${color}${line.icon}${reset} ${line.text}`);
+    } else {
+      parts.push(`  ${line.text}`);
+    }
+  }
+
+  parts.push(rule());
+  return parts.join("\n");
+}
+
+// ── Hook event names ────────────────────────────────────────────────
+
+export type HookEventName =
+  | "SessionStart"
+  | "UserPromptSubmit"
+  | "PreToolUse"
+  | "PostToolUse"
+  | "Stop"
+  | "Notification"
+  | "SubagentStop";
+
+// ── Hook output builder ─────────────────────────────────────────────
+
+export interface HookOutput {
+  /** User-facing message (supports ANSI colors) */
+  systemMessage?: string;
+  /** Decision for decision-capable hooks (Stop, PreToolUse, etc.) */
+  decision?: "approve" | "block";
+  /** Reason for blocking */
+  reason?: string;
+  /** Hook-specific output */
+  hookSpecificOutput?: {
+    hookEventName: HookEventName;
+    additionalContext?: string;
+  };
+  /** Suppress stdout from being added to context */
+  suppressOutput?: boolean;
+}
+
+/**
+ * Emit structured JSON hook output to stdout.
+ * This is the final call in a hook — prints the JSON and nothing else.
+ */
+export function emitHookOutput(output: HookOutput): void {
+  console.log(JSON.stringify(output));
+}
+
+// ── Convenience: stderr diagnostic logging ──────────────────────────
+
+/**
+ * Log a diagnostic message to stderr (visible in verbose/debug mode).
+ */
+export function debug(label: string, message: string): void {
+  console.error(
+    `${ansi.gray}[${label}]${ansi.reset} ${ansi.dim}${message}${ansi.reset}`
+  );
+}
