@@ -11,6 +11,8 @@
  * All operations are non-fatal — failures surface to the user but never block startup.
  */
 
+import { readFileSync } from "fs";
+import { join } from "path";
 import {
   ansi,
   icon,
@@ -20,8 +22,26 @@ import {
   type MessageLine,
 } from "./hook-output";
 
-const VECTOR_MEMORY_URL =
-  process.env.VECTOR_MEMORY_URL ?? "http://127.0.0.1:3271";
+/**
+ * Discover the server URL by reading the per-repo lockfile.
+ * Priority: env var > lockfile (with PID liveness check) > default port.
+ */
+function resolveServerUrl(): string {
+  if (process.env.VECTOR_MEMORY_URL) return process.env.VECTOR_MEMORY_URL;
+
+  try {
+    const lockPath = join(process.cwd(), ".vector-memory", "server.lock");
+    const { port, pid } = JSON.parse(readFileSync(lockPath, "utf8"));
+
+    // Stale check: signal 0 throws ESRCH if the process is gone
+    process.kill(pid, 0);
+    return `http://127.0.0.1:${port}`;
+  } catch {
+    return "http://127.0.0.1:3271";
+  }
+}
+
+const VECTOR_MEMORY_URL = resolveServerUrl();
 
 // ── Types ───────────────────────────────────────────────────────────
 

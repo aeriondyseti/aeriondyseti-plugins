@@ -1,5 +1,19 @@
 # Changelog
 
+## [2.0.0] - 2026-03-12
+
+### Breaking Changes
+- **Requires vector-memory-mcp 2.0.0+**: Server backend migrated from LanceDB to SQLite (sqlite-vec). Users with existing 1.x data should run `vector-memory-mcp migrate` before starting.
+- **Waypoint terminology**: All "checkpoint" references renamed to "waypoint" (tools, skills, hooks). See 1.4.1 changelog for details.
+
+### Added
+- **Lockfile-based port discovery**: `session-start.ts` now reads `.vector-memory/server.lock` to discover the server's actual port, solving multi-session port collision issues. Falls back to default port 3271 if no lockfile found.
+- **PORT-DISCOVERY.md**: Documentation for the lockfile-based port discovery feature.
+
+### Changed
+- **MCP server version**: `.mcp.json` now targets `@aeriondyseti/vector-memory-mcp@latest` (was `@dev`)
+- **Storage documentation**: Updated `vector-memory-usage` skill to reference SQLite/sqlite-vec instead of LanceDB
+
 ## [1.4.1] - 2026-03-11
 
 ### Changed

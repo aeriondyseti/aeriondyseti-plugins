@@ -9,13 +9,13 @@ The vector memory system provides semantic, project-scoped memory storage. Memor
 
 ## Database Storage and Version Control
 
-The vector-memory MCP server stores its database as a local file (`.vector-memory/memory.lance`) inside the project directory. **This database should be committed to version control by default.** Committing the database ensures:
+The vector-memory MCP server stores its database as a single SQLite file (`.vector-memory/memories.db`) inside the project directory. **This database should be committed to version control by default.** Committing the database ensures:
 
 - **Portability** — cloning the repo includes all accumulated project context, so new sessions (or new machines) start with full memory intact
 - **Collaboration** — teammates benefit from shared architectural decisions, known blockers, and implementation insights
 - **Durability** — the database is backed up alongside the code it describes, preventing accidental loss
 
-The database is a compact binary format (LanceDB) that diffs and merges reasonably well in Git. If a project has sensitive memories that should not be committed, add `.vector-memory/` to `.gitignore` on a per-project basis — but the default expectation is to commit it.
+The database is a single SQLite file with sqlite-vec for vector search and FTS5 for full-text search. If a project has sensitive memories that should not be committed, add `.vector-memory/` to `.gitignore` on a per-project basis — but the default expectation is to commit it.
 
 ## When to Proactively Search Memories
 
@@ -113,7 +113,7 @@ Call `mcp__vector-memory__store_memories` with appropriate metadata type tags:
 |------|-------|---------|
 | `decision` | What was chosen + why | "Chose Drizzle ORM over Prisma for type safety and SQL-like syntax" |
 | `implementation` | What was built + where + patterns | "Auth middleware in src/middleware/auth.ts uses JWT with RS256 signing" |
-| `insight` | Learning + why it matters | "LanceDB requires schema migration when adding vector columns" |
+| `insight` | Learning + why it matters | "sqlite-vec virtual tables require DELETE+INSERT, not INSERT OR REPLACE" |
 | `blocker` | Problem + resolution | "CORS errors resolved by adding origin whitelist in server config" |
 | `next-step` | TODO + suggested approach | "Add rate limiting to API; consider express-rate-limit middleware" |
 | `context` | Background info + constraints | "Project targets Node 20+ only; can use native fetch and crypto" |
