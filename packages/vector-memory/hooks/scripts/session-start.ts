@@ -75,7 +75,18 @@ type FetchResult<T> =
 // ── Helpers ─────────────────────────────────────────────────────────
 
 function timeAgo(iso: string): string {
-  const seconds = Math.floor((Date.now() - new Date(iso).getTime()) / 1000);
+  const now = Date.now();
+  const then = new Date(iso).getTime();
+  if (Number.isNaN(then)) {
+    debug("session-start", `timeAgo: invalid ISO string: ${iso}`);
+    return "unknown";
+  }
+  const seconds = Math.floor((now - then) / 1000);
+  debug("session-start", `timeAgo: iso=${iso}, now=${now}, then=${then}, delta=${seconds}s`);
+  if (seconds < 0) {
+    debug("session-start", `timeAgo: negative delta (${seconds}s) — clock skew or future timestamp`);
+    return "just now";
+  }
   if (seconds < 60) return `${seconds}s ago`;
   const minutes = Math.floor(seconds / 60);
   if (minutes < 60) return `${minutes}m ago`;

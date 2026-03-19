@@ -226,12 +226,12 @@ function evaluate(state: MonitorState): string | null {
 
   if (severity === "critical") {
     parts.push(
-      "Recommend: run /handoff:store, commit any pending work, and start a fresh session. " +
+      "Recommend: run /waypoint:set, commit any pending work, and start a fresh session. " +
         "Context quality degrades with each compression cycle."
     );
   } else if (severity === "strong") {
     parts.push(
-      "Consider: finish current task, commit, and start a new session with /handoff:get " +
+      "Consider: finish current task, commit, and start a new session with /waypoint:get " +
         "to preserve quality."
     );
   } else {

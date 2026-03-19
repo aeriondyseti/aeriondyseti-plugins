@@ -10,6 +10,7 @@
 import { existsSync, readFileSync, writeFileSync, mkdirSync, unlinkSync } from "fs";
 import { tmpdir } from "os";
 import { join } from "path";
+import { debug } from "./hook-output";
 
 interface HookInput {
   session_id: string;
@@ -28,11 +29,19 @@ async function main() {
   if (!input.session_id) return;
 
   const statePath = getStatePath(input.session_id);
+  debug("session-clear", `source=${input.source}, session_id=${input.session_id}, statePath=${statePath}, exists=${existsSync(statePath)}`);
 
   if (input.source === "clear") {
     // Full reset — delete the state file
-    if (existsSync(statePath)) {
+    try {
       unlinkSync(statePath);
+      debug("session-clear", "State file deleted");
+    } catch (err: any) {
+      if (err?.code === "ENOENT") {
+        debug("session-clear", "No state file to delete");
+      } else {
+        throw err;
+      }
     }
   } else if (input.source === "compact") {
     // Increment compression counter
