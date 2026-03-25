@@ -13,7 +13,7 @@ set -euo pipefail
 
 REPO_ROOT="$(cd "$(dirname "$0")/.." && pwd)"
 PACKAGES_DIR="$REPO_ROOT/packages"
-CACHE_DIR="$HOME/.claude/plugins/cache/cc-plugins"
+CACHE_DIR="$HOME/.claude-personal/plugins/cache/aeriondyseti-plugins"
 
 undo=false
 if [[ "${1:-}" == "--undo" ]]; then
@@ -23,7 +23,7 @@ fi
 if [[ ! -d "$CACHE_DIR" ]]; then
   echo "Plugin cache not found at $CACHE_DIR"
   exit 1
-fi
+fic
 
 linked=0
 restored=0

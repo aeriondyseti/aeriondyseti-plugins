@@ -1,17 +1,17 @@
-# cc-plugins
+# aeriondyseti-plugins
 
 Claude Code plugin marketplace by AerionDyseti.
 
 ## Install
 
 ```bash
-/plugin marketplace add AerionDyseti/cc-plugins
+/plugin marketplace add AerionDyseti/aeriondyseti-plugins
 ```
 
 Then install individual plugins:
 
 ```bash
-/plugin install vector-memory@cc-plugins
+/plugin install vector-memory@aeriondyseti-plugins
 ```
 
 ## Plugins
@@ -80,7 +80,7 @@ RAG-powered session memory with waypoints for Claude Code. Automatically loads t
 Design skills, browser automation, and UI auditing for frontend development.
 
 ```bash
-/plugin install frontend-design@cc-plugins
+/plugin install frontend-design@aeriondyseti-plugins
 ```
 
 #### Skills

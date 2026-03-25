@@ -3,11 +3,11 @@
   "repository": "https://github.com/aeriondyseti/aeriondyseti-plugins",
   "owner": {
     "name": "AerionDyseti",
-    "email": ""
+    "email": "inblessedsilencewaiting@gmail.com"
   },
   "metadata": {
     "description": "Claude Code plugins by AerionDyseti",
-    "version": "1.0.0",
+    "version": "2.1.0-dev",
     "pluginRoot": "./packages"
   },
   "plugins": [
