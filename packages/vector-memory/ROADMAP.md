@@ -15,6 +15,11 @@ Several `existsSync` → operate sequences remain outside the code touched in th
 
 Idiomatic fix: attempt the operation directly and catch `ENOENT` / check error codes.
 
+### Add hook unit tests
+The hook scripts (`session-start.ts`, `context-monitor.ts`, `session-clear.ts`) have no tests. To make them testable, extract key behaviors (server discovery, retry logic, output formatting, waypoint processing) into importable functions, then write `bun:test` tests covering: lockfile resolution (valid/stale/missing), progressive retry, health check failure paths, waypoint formatting, and cross-project contamination prevention.
+
+**Files:** `hooks/scripts/session-start.ts`, `hooks/scripts/context-monitor.ts`, `hooks/scripts/session-clear.ts`
+
 ### Remove temporary debug instrumentation
 Debug logging was added to `session-start.ts` (`timeAgo()`) and `session-clear.ts` for investigating the waypoint age and turn counter bugs. Once both bugs are resolved (see `TODO-fix-waypoint-age.md` and `TODO-turn-counter-clear.md`), remove the debug lines.
 

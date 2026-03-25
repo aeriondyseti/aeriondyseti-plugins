@@ -23,12 +23,20 @@ import {
 } from "./hook-output";
 
 /**
- * Discover the server URL by reading the per-repo lockfile.
- * Priority: env var > lockfile (with PID liveness check) > default port.
+ * Retry schedule for server discovery (ms).
+ * Total worst-case wait: 500 + 1000 + 2000 + 3000 = 6.5s, well within the 15s hook timeout.
  */
-function resolveServerUrl(): string {
-  if (process.env.VECTOR_MEMORY_URL) return process.env.VECTOR_MEMORY_URL;
+const RETRY_DELAYS = [500, 1000, 2000, 3000];
 
+function sleep(ms: number): Promise<void> {
+  return new Promise((resolve) => setTimeout(resolve, ms));
+}
+
+/**
+ * Try to read the lockfile and verify the PID is alive.
+ * Returns the server URL or null if the lockfile is missing/stale.
+ */
+function tryReadLockfile(): string | null {
   try {
     const lockPath = join(process.cwd(), ".vector-memory", "server.lock");
     const { port, pid } = JSON.parse(readFileSync(lockPath, "utf8"));
@@ -37,11 +45,36 @@ function resolveServerUrl(): string {
     process.kill(pid, 0);
     return `http://127.0.0.1:${port}`;
   } catch {
-    return "http://127.0.0.1:3271";
+    return null;
   }
 }
 
-const VECTOR_MEMORY_URL = resolveServerUrl();
+/**
+ * Discover the server URL by reading the per-repo lockfile.
+ * Priority: env var > lockfile (with PID liveness check).
+ *
+ * Never falls back to a default port — that risks connecting to a
+ * different project's server. If the lockfile isn't available after
+ * retries (server still booting), returns null.
+ */
+async function resolveServerUrl(): Promise<string | null> {
+  if (process.env.VECTOR_MEMORY_URL) return process.env.VECTOR_MEMORY_URL;
+
+  // First attempt (no delay)
+  const immediate = tryReadLockfile();
+  if (immediate) return immediate;
+
+  // Progressive retries — the MCP server may still be booting
+  for (const delay of RETRY_DELAYS) {
+    debug("session-start", `Lockfile not found, retrying in ${delay}ms...`);
+    await sleep(delay);
+    const url = tryReadLockfile();
+    if (url) return url;
+  }
+
+  debug("session-start", "Server lockfile not found after retries — skipping");
+  return null;
+}
 
 // ── Types ───────────────────────────────────────────────────────────
 
@@ -97,12 +130,13 @@ function timeAgo(iso: string): string {
 }
 
 async function fetchJson<T>(
+  baseUrl: string,
   path: string,
   options?: RequestInit & { timeout?: number }
 ): Promise<FetchResult<T>> {
   const { timeout = 5000, ...init } = options ?? {};
   try {
-    const response = await fetch(`${VECTOR_MEMORY_URL}${path}`, {
+    const response = await fetch(`${baseUrl}${path}`, {
       ...init,
       signal: AbortSignal.timeout(timeout),
     });
@@ -152,8 +186,15 @@ async function main() {
   const userLines: MessageLine[] = [];
   const warnings: string[] = [];
 
+  // Step 0: Discover server URL (with retries for slow boot)
+  const serverUrl = await resolveServerUrl();
+  if (!serverUrl) {
+    debug("session-start", "No server discovered — exiting silently");
+    return;
+  }
+
   // Step 1: Health check (must complete before parallel work)
-  const health = await fetchJson<HealthResponse>("/health");
+  const health = await fetchJson<HealthResponse>(serverUrl, "/health");
   if (!health.ok) {
     debug("session-start", `Server unreachable: ${health.error}`);
     return;
@@ -163,7 +204,7 @@ async function main() {
 
   // Steps 2 & 3: Index conversations + load waypoint in parallel
   const indexPromise = health.data.config.historyEnabled
-    ? fetchJson<IndexResponse>("/index-conversations", {
+    ? fetchJson<IndexResponse>(serverUrl, "/index-conversations", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: "{}",
@@ -171,7 +212,7 @@ async function main() {
       })
     : null;
 
-  const waypointPromise = fetchJson<WaypointResponse>("/waypoint");
+  const waypointPromise = fetchJson<WaypointResponse>(serverUrl, "/waypoint");
 
   const [indexResult, waypoint] = await Promise.all([
     indexPromise,
