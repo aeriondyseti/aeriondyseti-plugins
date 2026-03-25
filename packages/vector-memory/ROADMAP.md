@@ -1,5 +1,12 @@
 # vector-memory Plugin Roadmap
 
+## Features
+
+### Global waypoint project-mismatch guard
+When the session-start hook fetches the global (no-project) waypoint, it should check whether the waypoint's `project` metadata matches the current repo. If it doesn't match, treat it as "no waypoint found" — prevents loading stale context from a different project. This is groundwork for proper multi-project support.
+
+**Files:** `hooks/scripts/session-start.ts` (waypoint processing section), `packages/vector-memory/src/http/server.ts` (alternatively enforce server-side)
+
 ## Tech Debt
 
 ### Extract shared state-path module

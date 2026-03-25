@@ -8,7 +8,7 @@ import {
   buildSystemMessage,
   emitHookOutput,
   debug,
-} from "./hook-output";
+} from "./hooks-lib";
 
 // Read stdin (hook protocol)
 await Bun.stdin.text();

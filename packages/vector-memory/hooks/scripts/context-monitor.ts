@@ -16,14 +16,12 @@ import {
   existsSync,
   readFileSync,
   writeFileSync,
-  mkdirSync,
   openSync,
   readSync,
   closeSync,
   statSync,
 } from "fs";
-import { tmpdir } from "os";
-import { join } from "path";
+import { getStatePath } from "./hooks-lib";
 
 interface HookInput {
   session_id: string;
@@ -46,8 +44,6 @@ const COMPRESS_WARN = 2;
 const COMPRESS_STRONG = 4;
 const COMPRESS_CRITICAL = 6;
 
-const STATE_DIR = join(tmpdir(), "claude-context-monitor");
-
 // ── State ───────────────────────────────────────────────────────────
 
 interface MonitorState {
@@ -55,11 +51,6 @@ interface MonitorState {
   turn_count: number;
   compressions: number;
   context_length: number;
-}
-
-function getStatePath(sessionId: string): string {
-  mkdirSync(STATE_DIR, { recursive: true });
-  return join(STATE_DIR, `${sessionId}.json`);
 }
 
 function loadState(sessionId: string): MonitorState {
