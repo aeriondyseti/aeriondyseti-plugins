@@ -11,69 +11,50 @@ Claude Code plugin marketplace by AerionDyseti.
 Then install individual plugins:
 
 ```bash
-/plugin install vector-memory@cc-plugins
+/plugin install dev-toolkit@cc-plugins
 ```
 
 ## Plugins
 
-### vector-memory
+### dev-toolkit
 
-RAG-powered session memory with waypoints for Claude Code. Automatically loads the [vector-memory-mcp](https://github.com/AerionDyseti/vector-memory-mcp) server and adds waypoint commands, workflow skills, and session lifecycle hooks.
+Development toolkit: MCP servers (Serena, Context7, RepoMap) and git workflow skills for Claude Code.
 
-**Prerequisites:** [Bun](https://bun.sh/) 1.0+
+```bash
+/plugin install dev-toolkit@cc-plugins
+```
 
-#### MCP Server (auto-loaded)
+#### MCP Servers (auto-loaded)
 
-| Tool | Description |
-|------|-------------|
-| `store_memories` | Save memories with metadata |
-| `search_memories` | Semantic search with intent-based ranking |
-| `get_memories` | Retrieve memories by ID |
-| `update_memories` | Modify existing memories |
-| `delete_memories` | Soft-delete outdated memories |
-| `report_memory_usefulness` | Feedback for search quality improvement |
-| `set_waypoint` | Save session state snapshot |
-| `get_waypoint` | Restore session state |
-
-#### Commands
-
-| Command | Description |
-|---------|-------------|
-| `/waypoint:get` | Load project context from waypoint + git + relevant memories |
-| `/waypoint:set` | Extract session memories, then store a waypoint snapshot |
+| Server | Purpose |
+|--------|---------|
+| [Serena](https://github.com/oraios/serena) | LSP-backed semantic code navigation, symbol search, and symbolic editing |
+| [Context7](https://github.com/upstash/context7) | Up-to-date library documentation lookup |
+| [repomap-mcp](https://github.com/nicobailon/repomap-mcp) | Aider-style ranked codebase map via tree-sitter + PageRank |
 
 #### Skills
 
 | Skill | Triggers On |
 |-------|-------------|
-| **Waypoint Workflow** | "set a waypoint", "resume work", "where were we", session management |
-| **Vector Memory Usage** | "remember this", "search memories", "what did we decide", proactive memory search |
+| **Codebase Orientation** | Start of conversation, unfamiliar codebase, "how does X work" |
+| **Git Conventions** | Commit message format, branch naming, release flow reference |
+| **Creating Commits** | Staging files, writing conventional commit messages, pre-commit validation |
+| **Branch Management** | Creating, switching, syncing, or cleaning up branches |
+| **Pull Request Workflow** | Creating PRs, responding to feedback, merge strategies |
 
-#### Hooks
+#### Commands
 
-| Event | Behavior |
-|-------|----------|
-| **SessionStart** | Suggests loading waypoint if server is available |
-| **UserPromptSubmit** | Detects `/clear` and suggests setting waypoint first |
-| **Stop** | Monitors context usage — warns at 50%, blocks at 75% |
+| Command | Description |
+|---------|-------------|
+| `/dev:orient [file\|symbol]` | Generate a ranked codebase map, optionally focused on a file or symbol |
+| `/dev:branch [type] [name]` | Quick-create a properly named feature or fix branch from dev |
+| `/dev:sync` | Sync current branch with upstream (rebase on dev/main) |
+| `/dev:pr [--draft] [--base]` | Create a PR with auto-generated description from commit history |
 
-#### Workflow
+#### Prerequisites
 
-```
-1. Session starts → Accept waypoint load suggestion
-2. Work on tasks
-3. Context monitor warns at 50% → Consider setting a waypoint
-4. Complete discrete task → /waypoint:set
-5. /clear → Fresh context for next task
-6. Repeat
-```
-
-#### Configuration
-
-| Variable | Default | Description |
-|----------|---------|-------------|
-| `VECTOR_MEMORY_DB_PATH` | `.vector-memory/memories.db` | Database location |
-| `VECTOR_MEMORY_HTTP_PORT` | `3271` | HTTP server port |
+- [uv](https://docs.astral.sh/uv/) (for Serena via `uvx`)
+- [Node.js](https://nodejs.org/) (for Context7 and RepoMap via `npx`)
 
 ### frontend-design
 
