@@ -59,6 +59,19 @@ Write the validated spec to `docs/specs/YYYY-MM-DD-<topic>.md` with this structu
 **Next steps (if continuing):**
 - Use writing-plans skill to create an implementation plan from this spec
 
+## Self-Review Checklist
+
+Before presenting the spec to the user, review it against these criteria:
+
+- [ ] **Goal is singular** — one clear sentence, not a compound goal
+- [ ] **Acceptance criteria are testable** — each one has a concrete "how would I verify this?" answer
+- [ ] **Out of scope is explicit** — adjacent features that could creep in are named and excluded
+- [ ] **No implementation leaking in** — the spec says *what*, not *how*
+- [ ] **YAGNI applied** — nothing is included "just in case" or "while we're at it"
+- [ ] **Edge cases explored** — error states, empty inputs, concurrent access (where relevant)
+
+If any item fails, revise the spec before presenting it.
+
 ## Key Principles
 
 - **One question at a time** — Don't overwhelm with multiple questions

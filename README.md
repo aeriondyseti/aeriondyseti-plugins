@@ -79,8 +79,11 @@ Development toolkit: MCP servers (Serena, Context7, RepoMap) and git workflow sk
 |---------|-------------|
 | `/dev:orient [file\|symbol]` | Generate a ranked codebase map, optionally focused on a file or symbol |
 | `/dev:branch [type] [name]` | Quick-create a properly named feature or fix branch from dev |
+| `/dev:commit [--all]` | Stage and commit changes with a conventional commit message |
 | `/dev:sync` | Sync current branch with upstream (rebase on dev/main) |
 | `/dev:pr [--draft] [--base]` | Create a PR with auto-generated description from commit history |
+| `/dev:ship [--draft] [--base]` | Commit, push, and open a PR in one step |
+| `/dev:clean [--gone]` | Clean up stale branches: gone remotes, merged branches, and worktrees |
 
 #### Prerequisites
 

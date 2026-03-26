@@ -7,6 +7,12 @@ description: "Use at the start of every conversation and when deciding how to ap
 
 These skills represent how I expect work to be done. They are not optional — check for a matching skill before starting any task, and invoke it if one applies.
 
+## Subagent Guard
+
+If you were dispatched as a subagent or teammate for a specific task, **stop here**. Do not activate the full workflow. You have a focused job — do it and report back. The orchestrator handles the big picture.
+
+Only activate these skills when you are the top-level agent in a conversation with the user.
+
 ## Skill Map
 
 | Situation | Skill | Why |

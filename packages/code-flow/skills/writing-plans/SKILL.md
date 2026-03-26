@@ -95,6 +95,21 @@ When the execution strategy involves parallel work:
 - Put shared infrastructure (types, interfaces, config) in early tasks that others depend on
 - Note any shared state or files that could cause merge conflicts
 
+## Self-Review Checklist
+
+Before presenting the plan to the user, review it against these criteria:
+
+- [ ] **Every task has a verification step** — a runnable command with expected output
+- [ ] **Every file reference is a full path** — no relative or vague references
+- [ ] **Dependencies are acyclic** — no circular dependency chains
+- [ ] **Parallel tracks are identified** — independent tasks are grouped for concurrent execution
+- [ ] **No task is too large** — each task should take a focused agent 5-15 minutes
+- [ ] **No task is too vague** — an agent with no prior context could pick it up and execute
+- [ ] **Shared state is flagged** — files modified by multiple tasks are called out as conflict risks
+- [ ] **The plan matches the spec** — every acceptance criterion maps to at least one task
+
+If any item fails, revise the plan before presenting it.
+
 ## Key Principles
 
 - **Describe intent, not code** — Explain what each step should accomplish and why, but don't write the full implementation in the plan. The implementing agent will write the code. Duplicating it here wastes tokens.

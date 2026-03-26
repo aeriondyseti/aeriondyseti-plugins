@@ -1,6 +1,6 @@
 {
   "name": "code-flow",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "Structured development workflow skills and agents for Claude Code",
   "author": {
     "name": "AerionDyseti",

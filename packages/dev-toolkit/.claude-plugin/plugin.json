@@ -1,6 +1,6 @@
 {
   "name": "dev-toolkit",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Development toolkit: MCP servers (Serena, Context7, RepoMap) and git workflow skills for Claude Code",
   "author": {
     "name": "AerionDyseti",

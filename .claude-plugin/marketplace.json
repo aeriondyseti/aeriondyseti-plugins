@@ -7,7 +7,7 @@
   },
   "metadata": {
     "description": "Claude Code plugins by AerionDyseti",
-    "version": "3.0.0",
+    "version": "3.1.0",
     "pluginRoot": "./packages"
   },
   "plugins": [
@@ -15,7 +15,7 @@
       "name": "code-flow",
       "source": "./packages/code-flow",
       "description": "Structured development workflow skills and agents for Claude Code",
-      "version": "0.2.0",
+      "version": "0.3.0",
       "author": {
         "name": "AerionDyseti"
       },
@@ -37,7 +37,7 @@
       "name": "dev-toolkit",
       "source": "./packages/dev-toolkit",
       "description": "Development toolkit: MCP servers (Serena, Context7, RepoMap) and git workflow skills for Claude Code",
-      "version": "0.1.0",
+      "version": "0.2.0",
       "author": {
         "name": "AerionDyseti"
       },
