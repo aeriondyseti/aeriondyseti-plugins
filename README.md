@@ -1,27 +1,58 @@
-# cc-plugins
+# aeriondyseti-plugins
 
 Claude Code plugin marketplace by AerionDyseti.
 
 ## Install
 
 ```bash
-/plugin marketplace add AerionDyseti/cc-plugins
+/plugin marketplace add AerionDyseti/aeriondyseti-plugins
 ```
 
 Then install individual plugins:
 
 ```bash
-/plugin install dev-toolkit@cc-plugins
+/plugin install dev-toolkit@aeriondyseti-plugins
 ```
 
 ## Plugins
+
+### code-flow
+
+Structured development workflow skills and agents for Claude Code. Routes you to the right thinking process for any task — brainstorming, planning, executing, debugging, reviewing, or finishing.
+
+```bash
+/plugin install code-flow@aeriondyseti-plugins
+```
+
+#### Skills
+
+| Skill | Triggers On |
+|-------|-------------|
+| **Getting Started** | Start of conversation — routes to the appropriate skill below |
+| **Brainstorming** | "build a feature", "add functionality", creative/design work |
+| **Writing Plans** | "plan the implementation", multi-step tasks with requirements |
+| **Executing Plans** | "execute the plan", work with a written implementation plan |
+| **Agent Orchestration** | Deciding how to structure work across agents (teams, subagents, serial) |
+| **Systematic Debugging** | Bug, test failure, or unexpected behavior |
+| **Code Review** | After completing a feature, before merging, or acting on feedback |
+| **Verification Before Completion** | Before claiming work is done — evidence-based verification |
+| **Finishing a Development Branch** | Implementation complete — merge, PR, keep, or discard |
+
+#### Agents
+
+| Agent | Purpose |
+|-------|---------|
+| **Code Architect** | Designs architecture for new features — analyzes patterns, produces blueprints |
+| **Code Explorer** | Deep understanding of a feature or subsystem before making changes |
+| **Code Reviewer** | Reviews completed work against requirements and coding standards |
+| **Code Simplifier** | Simplifies and refines code for clarity and maintainability |
 
 ### dev-toolkit
 
 Development toolkit: MCP servers (Serena, Context7, RepoMap) and git workflow skills for Claude Code.
 
 ```bash
-/plugin install dev-toolkit@cc-plugins
+/plugin install dev-toolkit@aeriondyseti-plugins
 ```
 
 #### MCP Servers (auto-loaded)
@@ -61,7 +92,7 @@ Development toolkit: MCP servers (Serena, Context7, RepoMap) and git workflow sk
 Design skills, browser automation, and UI auditing for frontend development.
 
 ```bash
-/plugin install frontend-design@cc-plugins
+/plugin install frontend-design@aeriondyseti-plugins
 ```
 
 #### Skills
