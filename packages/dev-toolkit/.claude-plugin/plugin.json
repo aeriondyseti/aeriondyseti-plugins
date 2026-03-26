@@ -1,0 +1,12 @@
+{
+  "name": "dev-toolkit",
+  "version": "0.1.0",
+  "description": "Development toolkit: MCP servers (Serena, Context7, RepoMap) and git workflow skills for Claude Code",
+  "author": {
+    "name": "AerionDyseti",
+    "url": "https://github.com/AerionDyseti"
+  },
+  "repository": "https://github.com/AerionDyseti/cc-plugins",
+  "license": "MIT",
+  "keywords": ["mcp", "serena", "context7", "repomap", "git", "workflow", "branching", "commits", "pull-requests"]
+}

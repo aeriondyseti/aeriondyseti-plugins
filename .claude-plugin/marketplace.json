@@ -7,7 +7,7 @@
   },
   "metadata": {
     "description": "Claude Code plugins by AerionDyseti",
-    "version": "2.0.0",
+    "version": "3.0.0",
     "pluginRoot": "./packages"
   },
   "plugins": [
@@ -32,6 +32,17 @@
       },
       "category": "frontend",
       "tags": ["frontend", "design", "ui", "ux", "playwright", "browser", "automation", "testing", "e2e", "mcp"]
+    },
+    {
+      "name": "dev-toolkit",
+      "source": "./packages/dev-toolkit",
+      "description": "Development toolkit: MCP servers (Serena, Context7, RepoMap) and git workflow skills for Claude Code",
+      "version": "0.1.0",
+      "author": {
+        "name": "AerionDyseti"
+      },
+      "category": "development",
+      "tags": ["mcp", "serena", "context7", "repomap", "git", "workflow", "branching", "commits", "pull-requests"]
     }
   ]
 }

@@ -1,0 +1,30 @@
+{
+  "mcpServers": {
+    "serena": {
+      "type": "stdio",
+      "command": "uvx",
+      "args": [
+        "--from",
+        "git+https://github.com/oraios/serena",
+        "serena",
+        "start-mcp-server",
+        "--context",
+        "claude-code",
+        "--mode",
+        "no-memories",
+        "--mode",
+        "editing"
+      ]
+    },
+    "context7": {
+      "type": "stdio",
+      "command": "npx",
+      "args": ["-y", "@upstash/context7-mcp"]
+    },
+    "repomap": {
+      "type": "stdio",
+      "command": "npx",
+      "args": ["-y", "repomap-mcp"]
+    }
+  }
+}
