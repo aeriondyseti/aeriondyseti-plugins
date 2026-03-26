@@ -7,21 +7,10 @@
   },
   "metadata": {
     "description": "Claude Code plugins by AerionDyseti",
-    "version": "1.0.0",
+    "version": "2.0.0",
     "pluginRoot": "./packages"
   },
   "plugins": [
-    {
-      "name": "vector-memory",
-      "source": "./packages/vector-memory",
-      "description": "RAG-powered session memory with waypoints for Claude Code",
-      "version": "2.0.1",
-      "author": {
-        "name": "AerionDyseti"
-      },
-      "category": "productivity",
-      "tags": ["memory", "rag", "waypoints", "session-persistence", "vector-search"]
-    },
     {
       "name": "code-flow",
       "source": "./packages/code-flow",
