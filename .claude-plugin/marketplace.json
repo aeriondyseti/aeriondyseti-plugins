@@ -7,20 +7,20 @@
   },
   "metadata": {
     "description": "Claude Code plugins by AerionDyseti",
-    "version": "3.1.0",
+    "version": "4.0.0",
     "pluginRoot": "./packages"
   },
   "plugins": [
     {
       "name": "code-flow",
       "source": "./packages/code-flow",
-      "description": "Structured development workflow skills and agents for Claude Code",
-      "version": "0.3.0",
+      "description": "A thinking discipline for any code change. Discover → Execute → Verify.",
+      "version": "1.0.0",
       "author": {
         "name": "AerionDyseti"
       },
       "category": "productivity",
-      "tags": ["workflow", "code-review", "planning", "debugging", "agents"]
+      "tags": ["workflow", "spec-driven", "discovery", "code-review", "agents"]
     },
     {
       "name": "frontend-design",

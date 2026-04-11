@@ -1,11 +1,11 @@
 ---
 name: getting-started
-description: "Use at the start of every conversation and when deciding how to approach a task. Routes to the appropriate thinking skill based on what the user is asking for."
+description: "Use at the start of every conversation and when deciding how to approach a task. Routes to the appropriate phase of the Discover → Execute → Verify flow."
 ---
 
 # Getting Started
 
-These skills represent how I expect work to be done. They are not optional — check for a matching skill before starting any task, and invoke it if one applies.
+Code-flow is a thinking discipline for any code change. One process — Discover → Execute → Verify — whether the work is a new feature, a bug fix, a refactor, or tech debt.
 
 ## Subagent Guard
 
@@ -13,36 +13,49 @@ If you were dispatched as a subagent or teammate for a specific task, **stop her
 
 Only activate these skills when you are the top-level agent in a conversation with the user.
 
-## Skill Map
+## Where Are You?
 
-| Situation | Skill | Why |
-|-----------|-------|-----|
-| New feature, new idea, creative work | **brainstorming** | Discover requirements before building |
-| Have requirements, need a plan | **writing-plans** | Turn specs into actionable task breakdowns |
-| Have a plan, ready to build | **executing-plans** | Orchestrate parallel or serial execution |
-| Delegating work to agents | **agent-orchestration** | Choose the right agent strategy, write good prompts |
-| Bug, test failure, unexpected behavior | **systematic-debugging** | Find root cause before fixing |
-| About to say "done" | **verification-before-completion** | Run the checks, read the output, then claim it |
-| Implementation complete, what now? | **finishing-a-development-branch** | Verify, then decide: merge, PR, keep, or discard |
-| Requesting or receiving code review | **code-review** | How to ask for review and how to act on feedback |
+Check the project state to figure out where in the flow you are:
 
-## Priority
+| Signal | You're in... | Skill |
+|--------|-------------|-------|
+| No spec file exists | **Discover** | `discover` |
+| Spec file exists but implementation is incomplete | **Execute** | `execute` |
+| Implementation matches the spec, needs verification | **Verify** | `verify` |
+| User describes a new problem, feature, or bug | **Discover** | `discover` |
+| User says "let's build this" with a clear spec | **Execute** | `execute` |
+| User says "is this ready?" or "review this" | **Verify** | `verify` |
 
-When multiple skills could apply, process skills come first:
+**When in doubt, start with Discover.** Exploring the problem before acting is never wasted time.
 
-1. **Thinking skills** (brainstorming, debugging) — these determine how to approach the problem
-2. **Execution skills** (writing-plans, executing-plans) — these guide how to do the work
-3. **Completion skills** (verification, finishing, code-review) — these ensure quality at the end
+## Tech Debt Check
 
-## How Skills Work Together
+Before starting any work, check the sprint counter in `CLAUDE.md`:
 
-A typical feature flow:
+- If this sprint should be a tech debt sprint per the project's cadence, say so. Scope the work to items in `TECH-DEBT.md`.
+- If `TECH-DEBT.md` doesn't exist yet, create it.
+- If there's no sprint counter in `CLAUDE.md` yet, ask the user to set one up.
 
-1. **brainstorming** — understand what to build, produce a spec
-2. **writing-plans** — turn the spec into tasks with dependencies
-3. **executing-plans** + **agent-orchestration** — dispatch agents to build it
-4. **code-review** — review the implementation against requirements
-5. **verification-before-completion** — verify everything works
-6. **finishing-a-development-branch** — merge, PR, or clean up
+## The Flow
 
-Not every task hits every skill. A bug fix might only need systematic-debugging → verification. A quick change might skip straight to verification. Use judgment — but default to using the skill if there's any doubt.
+```
+┌─────────┐     ┌─────────┐     ┌─────────┐
+│ Discover │ ──▶ │ Execute │ ──▶ │  Verify │
+└─────────┘     └─────────┘     └─────────┘
+     ▲               │               │
+     └───────────────┘               │
+       (amend spec)                  │
+                                     ▼
+                                Ready to ship
+```
+
+- **Discover** → explore, prototype, iterate, crystallize into a spec
+- **Execute** → build from the spec, autonomously with guardrails
+- **Verify** → correctness + quality + review, then "ready to ship"
+
+Phase transitions are gated by the spec:
+- **Discover → Execute:** spec exists and user approved it
+- **Execute → Verify:** all spec items implemented
+- **Surprises during Execute:** amend the spec, don't restart Discover
+
+Code-flow ends at "ready to ship." What happens after (PR, merge, deploy) is outside this flow.
