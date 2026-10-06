@@ -49,7 +49,7 @@ Structured development workflow skills and agents for Claude Code. Routes you to
 
 ### plugin-kit
 
-Shared widgets for Claude Code mods. Plugins that depend on it hand `$.kit` their state (meters, clocks, counters, lists, tags) and draw what it returns, so they look and behave the same; you set the look once in `/config`. Lives in [aeriondyseti/hook-kit](https://github.com/aeriondyseti/hook-kit/tree/main/plugin).
+Shared widgets for Claude Code mods. Plugins that depend on it hand `$.kit` their state (meters, clocks, counters, lists, tags) and draw what it returns, so they look and behave the same; you set the look once in `/config`. Lives in [aeriondyseti/plugin-kit](https://github.com/aeriondyseti/plugin-kit/tree/main/plugin).
 
 ```bash
 /plugin install plugin-kit@aeriondyseti-plugins
