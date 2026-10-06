@@ -55,7 +55,15 @@ Shared widgets for Claude Code mods. Plugins that depend on it hand `$.kit` thei
 /plugin install plugin-kit@aeriondyseti-plugins
 ```
 
-Plugin authors: `npx @aeriondyseti/hook-kit add-kit` in your plugin's folder sets up the dependency.
+Plugin authors: `npx @aeriondyseti/plugin-kit add-kit` in your plugin's folder sets up the dependency.
+
+### context-monitor
+
+Watches each session's context usage and compaction count, and warns you (note → warning → action recommended) before quality degrades: at 100k/150k/200k tokens, or 2/4/6 compactions. One bundled script, built on [`@aeriondyseti/plugin-kit`](https://github.com/aeriondyseti/plugin-kit); nothing to install beyond the plugin.
+
+```bash
+/plugin install context-monitor@aeriondyseti-plugins
+```
 
 ### dev-toolkit
 

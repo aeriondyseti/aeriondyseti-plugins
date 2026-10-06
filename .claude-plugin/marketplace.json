@@ -7,7 +7,7 @@
   },
   "metadata": {
     "description": "Claude Code plugins by AerionDyseti",
-    "version": "4.1.0",
+    "version": "4.2.0",
     "pluginRoot": "./packages"
   },
   "plugins": [
@@ -60,6 +60,17 @@
       },
       "category": "development",
       "tags": ["mcp", "serena", "context7", "repomap", "git", "workflow", "branching", "commits", "pull-requests"]
+    },
+    {
+      "name": "context-monitor",
+      "source": "./packages/context-monitor",
+      "description": "Per-session context-usage monitor: warns the user as token pressure and compression count climb.",
+      "version": "0.1.0",
+      "author": {
+        "name": "AerionDyseti"
+      },
+      "category": "productivity",
+      "tags": ["context", "monitoring", "session-health", "hooks"]
     }
   ]
 }
