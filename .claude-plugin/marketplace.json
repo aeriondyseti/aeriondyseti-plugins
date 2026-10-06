@@ -7,13 +7,17 @@
   },
   "metadata": {
     "description": "Claude Code plugins by AerionDyseti",
-    "version": "4.2.0",
-    "pluginRoot": "./packages"
+    "version": "5.0.0"
   },
   "plugins": [
     {
       "name": "code-flow",
-      "source": "./packages/code-flow",
+      "source": {
+        "source": "github",
+        "repo": "aeriondyseti/code-flow",
+        "ref": "v1.0.0",
+        "sha": "b9ddb53c5bf8d57b9f12c4ddba2dd4fde56610cd"
+      },
       "description": "A thinking discipline for any code change. Discover → Execute → Verify.",
       "version": "1.0.0",
       "author": {
@@ -41,7 +45,12 @@
     },
     {
       "name": "frontend-design",
-      "source": "./packages/frontend-design",
+      "source": {
+        "source": "github",
+        "repo": "aeriondyseti/frontend-design",
+        "ref": "v0.0.1",
+        "sha": "755d32b235c20c552d44e741bab887e2e67775d9"
+      },
       "description": "Frontend design guidance, Playwright browser automation skill, and Playwright MCP server in one plugin",
       "version": "0.0.1",
       "author": {
@@ -52,7 +61,12 @@
     },
     {
       "name": "dev-toolkit",
-      "source": "./packages/dev-toolkit",
+      "source": {
+        "source": "github",
+        "repo": "aeriondyseti/dev-toolkit",
+        "ref": "v0.2.0",
+        "sha": "4a0fada5423a6212efe609fa041c9709bc28ba0b"
+      },
       "description": "Development toolkit: MCP servers (Serena, Context7, RepoMap) and git workflow skills for Claude Code",
       "version": "0.2.0",
       "author": {
@@ -63,7 +77,12 @@
     },
     {
       "name": "context-monitor",
-      "source": "./packages/context-monitor",
+      "source": {
+        "source": "github",
+        "repo": "aeriondyseti/context-monitor",
+        "ref": "v0.1.0",
+        "sha": "aa4c9d0d9e3c481eb606cae2e6de03f36ab08a8a"
+      },
       "description": "Per-session context-usage monitor: warns the user as token pressure and compression count climb.",
       "version": "0.1.0",
       "author": {
