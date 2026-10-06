@@ -47,6 +47,16 @@ Structured development workflow skills and agents for Claude Code. Routes you to
 | **Code Reviewer** | Reviews completed work against requirements and coding standards |
 | **Code Simplifier** | Simplifies and refines code for clarity and maintainability |
 
+### plugin-kit
+
+Shared widgets for Claude Code mods. Plugins that depend on it hand `$.kit` their state (meters, clocks, counters, lists, tags) and draw what it returns, so they look and behave the same; you set the look once in `/config`. Lives in [aeriondyseti/hook-kit](https://github.com/aeriondyseti/hook-kit/tree/main/plugin).
+
+```bash
+/plugin install plugin-kit@aeriondyseti-plugins
+```
+
+Plugin authors: `npx @aeriondyseti/hook-kit add-kit` in your plugin's folder sets up the dependency.
+
 ### dev-toolkit
 
 Development toolkit: MCP servers (Serena, Context7, RepoMap) and git workflow skills for Claude Code.

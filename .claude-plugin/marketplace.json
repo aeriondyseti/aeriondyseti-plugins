@@ -7,7 +7,7 @@
   },
   "metadata": {
     "description": "Claude Code plugins by AerionDyseti",
-    "version": "4.0.0",
+    "version": "4.1.0",
     "pluginRoot": "./packages"
   },
   "plugins": [
@@ -21,6 +21,23 @@
       },
       "category": "productivity",
       "tags": ["workflow", "spec-driven", "discovery", "code-review", "agents"]
+    },
+    {
+      "name": "plugin-kit",
+      "source": {
+        "source": "git-subdir",
+        "url": "https://github.com/aeriondyseti/hook-kit.git",
+        "path": "plugin",
+        "ref": "v1.2.0",
+        "sha": "b3c3beec6562d25f0e4c1f624f58301320f528b3"
+      },
+      "description": "Shared widgets for Claude Code mods: other plugins hand $.kit their state and draw what it returns.",
+      "version": "0.1.0",
+      "author": {
+        "name": "AerionDyseti"
+      },
+      "category": "development",
+      "tags": ["widgets", "ui", "mods", "library", "hooks"]
     },
     {
       "name": "frontend-design",
