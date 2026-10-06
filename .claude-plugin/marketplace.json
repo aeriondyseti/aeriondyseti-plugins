@@ -28,11 +28,11 @@
         "source": "git-subdir",
         "url": "https://github.com/aeriondyseti/plugin-kit.git",
         "path": "plugin",
-        "ref": "v1.2.0",
-        "sha": "b3c3beec6562d25f0e4c1f624f58301320f528b3"
+        "ref": "v2.2.0",
+        "sha": "77026765e35d354789fca0ee322510517d089795"
       },
       "description": "Shared widgets for Claude Code mods: other plugins hand $.kit their state and draw what it returns.",
-      "version": "0.1.0",
+      "version": "0.1.1",
       "author": {
         "name": "AerionDyseti"
       },
