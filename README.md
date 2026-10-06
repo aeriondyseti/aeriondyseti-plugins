@@ -28,8 +28,14 @@ See each repository's README for skills, commands, and prerequisites.
 
 ## Releasing a plugin
 
-1. In the plugin's repo, bump `version` in `.claude-plugin/plugin.json`, commit, and tag `vX.Y.Z`; push the commit and tag.
-2. Here, update that plugin's entry in `marketplace.json`: `version`, `source.ref` (the tag), and `source.sha` (`git rev-parse vX.Y.Z^{commit}`).
+Release from the plugin's own repo with [plugin-kit](https://github.com/aeriondyseti/plugin-kit)'s `release` command. Don't edit entries here by hand. It bumps the plugin's version, tags it, and pins that plugin's `ref`, `sha`, and `version` in this repo's `marketplace.json` in one step:
+
+```bash
+# from the plugin's repo, with this repo cloned alongside it
+npx @aeriondyseti/plugin-kit release patch --plugin . --marketplace ../aeriondyseti-plugins/.claude-plugin/marketplace.json
+```
+
+Push the plugin repo (`git push origin main --follow-tags`) before committing and pushing the updated `marketplace.json` here. Each plugin's README has the full steps.
 
 ## License
 
