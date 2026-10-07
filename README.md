@@ -23,6 +23,7 @@ Then install individual plugins:
 | **context-monitor** | [aeriondyseti/context-monitor](https://github.com/aeriondyseti/context-monitor) | Warns as a session's context climbs (100k/150k/200k tokens) or compactions pile up (2/4/6). Built on plugin-kit |
 | **dev-toolkit** | [aeriondyseti/dev-toolkit](https://github.com/aeriondyseti/dev-toolkit) | Serena, Context7, and RepoMap MCP servers plus git workflow skills and `/dev:*` commands |
 | **frontend-design** | [aeriondyseti/frontend-design](https://github.com/aeriondyseti/frontend-design) | Design skills, Playwright automation and MCP server, and `/design:*` UI auditing commands |
+| **vector-memory** | [aeriondyseti/vector-memory-mcp](https://github.com/aeriondyseti/vector-memory-mcp/tree/main/plugin) | Local semantic memory across sessions: the vector-memory MCP server (run from npm), waypoint checkpoints at compaction, `/clear` and `/exit`, and memory/waypoint skills |
 
 See each repository's README for skills, commands, and prerequisites.
 

@@ -7,7 +7,7 @@
   },
   "metadata": {
     "description": "Claude Code plugins by AerionDyseti",
-    "version": "5.0.0"
+    "version": "5.1.0"
   },
   "plugins": [
     {
@@ -90,6 +90,23 @@
       },
       "category": "productivity",
       "tags": ["context", "monitoring", "session-health", "hooks"]
+    },
+    {
+      "name": "vector-memory",
+      "source": {
+        "source": "git-subdir",
+        "url": "https://github.com/aeriondyseti/vector-memory-mcp.git",
+        "path": "plugin",
+        "ref": "v3.1.0",
+        "sha": "72f0a2a667028903717ebd2959f7b1e77b244f95"
+      },
+      "description": "RAG-powered session memory with waypoints for Claude Code",
+      "version": "3.1.0",
+      "author": {
+        "name": "AerionDyseti"
+      },
+      "category": "productivity",
+      "tags": ["memory", "rag", "waypoints", "session-persistence", "vector-search", "mcp"]
     }
   ]
 }
