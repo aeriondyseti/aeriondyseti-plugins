@@ -13,8 +13,8 @@
     {
       "name": "code-flow",
       "source": {
-        "source": "github",
-        "repo": "aeriondyseti/code-flow",
+        "source": "url",
+        "url": "https://github.com/aeriondyseti/code-flow.git",
         "ref": "v1.0.0",
         "sha": "b9ddb53c5bf8d57b9f12c4ddba2dd4fde56610cd"
       },
@@ -46,8 +46,8 @@
     {
       "name": "frontend-design",
       "source": {
-        "source": "github",
-        "repo": "aeriondyseti/frontend-design",
+        "source": "url",
+        "url": "https://github.com/aeriondyseti/frontend-design.git",
         "ref": "v0.0.1",
         "sha": "755d32b235c20c552d44e741bab887e2e67775d9"
       },
@@ -62,8 +62,8 @@
     {
       "name": "dev-toolkit",
       "source": {
-        "source": "github",
-        "repo": "aeriondyseti/dev-toolkit",
+        "source": "url",
+        "url": "https://github.com/aeriondyseti/dev-toolkit.git",
         "ref": "v0.2.0",
         "sha": "4a0fada5423a6212efe609fa041c9709bc28ba0b"
       },
@@ -78,8 +78,8 @@
     {
       "name": "context-monitor",
       "source": {
-        "source": "github",
-        "repo": "aeriondyseti/context-monitor",
+        "source": "url",
+        "url": "https://github.com/aeriondyseti/context-monitor.git",
         "ref": "v0.1.0",
         "sha": "aa4c9d0d9e3c481eb606cae2e6de03f36ab08a8a"
       },
