@@ -4,3 +4,7 @@ node_modules/
 .vector-memory/
 .serena/cache/
 .serena/project.local.yml
+
+# Local-only Claude Code state
+.claude/settings.local.json
+.claude/worktrees/
