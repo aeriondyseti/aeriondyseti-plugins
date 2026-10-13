@@ -7,7 +7,7 @@
   },
   "metadata": {
     "description": "Claude Code plugins by AerionDyseti",
-    "version": "5.4.1"
+    "version": "5.4.2"
   },
   "plugins": [
     {
@@ -113,11 +113,11 @@
       "source": {
         "source": "url",
         "url": "https://github.com/aeriondyseti/claude-speaks.git",
-        "ref": "v0.3.1",
-        "sha": "21225338e367a83fcab795dc5df69d5a76a3ea13"
+        "ref": "v0.3.2",
+        "sha": "77522be761320f390b9eb429d39b2ffbcbeda296"
       },
       "description": "Reads Claude's replies aloud with local Pocket TTS on the CPU, turning paths, numbers, hashes and jargon into speakable words.",
-      "version": "0.3.1",
+      "version": "0.3.2",
       "author": {
         "name": "AerionDyseti"
       },
