@@ -113,11 +113,11 @@
       "source": {
         "source": "url",
         "url": "https://github.com/aeriondyseti/claude-speaks.git",
-        "ref": "v0.5.0",
-        "sha": "ae4d67ccfcb1af84aeebd25cdd5aa02b0d4948dc"
+        "ref": "v0.5.1",
+        "sha": "4ebd352bf34b0fc07fd9384a30ad48cbe69ce04c"
       },
       "description": "Reads Claude's replies aloud with local Pocket TTS on the CPU, turning paths, numbers, hashes and jargon into speakable words.",
-      "version": "0.5.0",
+      "version": "0.5.1",
       "author": {
         "name": "AerionDyseti"
       },
