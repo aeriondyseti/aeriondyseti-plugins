@@ -97,11 +97,11 @@
         "source": "git-subdir",
         "url": "https://github.com/aeriondyseti/vector-memory-mcp.git",
         "path": "plugin",
-        "ref": "v3.1.0",
-        "sha": "72f0a2a667028903717ebd2959f7b1e77b244f95"
+        "ref": "v3.2.0",
+        "sha": "ef2413af509184eb2dd096bd716103f0af6327b3"
       },
       "description": "RAG-powered session memory with waypoints for Claude Code",
-      "version": "3.1.0",
+      "version": "3.2.0",
       "author": {
         "name": "AerionDyseti"
       },
