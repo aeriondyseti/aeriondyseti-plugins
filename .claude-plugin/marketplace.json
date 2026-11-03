@@ -7,7 +7,7 @@
   },
   "metadata": {
     "description": "Claude Code plugins by AerionDyseti",
-    "version": "5.4.2"
+    "version": "5.5.0"
   },
   "plugins": [
     {
@@ -123,6 +123,22 @@
       },
       "category": "productivity",
       "tags": ["tts", "speech", "voice", "accessibility", "audio", "hooks"]
+    },
+    {
+      "name": "command-highlight",
+      "source": {
+        "source": "url",
+        "url": "https://github.com/aeriondyseti/command-highlight.git",
+        "ref": "v0.1.0",
+        "sha": "9a66ed32addca7d127c70a1be9ad74f40a8ad00a"
+      },
+      "description": "Syntax-highlights Bash and PowerShell tool calls, including embedded Python/TypeScript scripts in heredocs and -c/-e strings, each in its own language.",
+      "version": "0.1.0",
+      "author": {
+        "name": "AerionDyseti"
+      },
+      "category": "productivity",
+      "tags": ["syntax-highlighting", "bash", "powershell", "transcript", "ui", "mods"]
     }
   ]
 }

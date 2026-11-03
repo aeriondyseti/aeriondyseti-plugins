@@ -19,6 +19,7 @@ Then install individual plugins:
 | Plugin | Repository | What it does |
 |--------|------------|--------------|
 | **code-flow** | [aeriondyseti/code-flow](https://github.com/aeriondyseti/code-flow) | A thinking discipline for any code change: Discover → Execute → Verify skills, plus architect/explorer/reviewer/simplifier agents |
+| **command-highlight** | [aeriondyseti/command-highlight](https://github.com/aeriondyseti/command-highlight) | Syntax-highlights Bash/PowerShell tool calls in the transcript, with embedded scripts (heredocs, `-c`/`-e` strings, here-strings) in their own language: Python, TypeScript and more |
 | **plugin-kit** | [aeriondyseti/plugin-kit](https://github.com/aeriondyseti/plugin-kit/tree/main/plugin) | Shared widgets for Claude Code mods — plugins hand `$.kit` their state and draw what it returns. Plugin authors: `npx @aeriondyseti/plugin-kit add-kit` |
 | **context-monitor** | [aeriondyseti/context-monitor](https://github.com/aeriondyseti/context-monitor) | Warns as a session's context climbs (100k/150k/200k tokens) or compactions pile up (2/4/6). Built on plugin-kit |
 | **dev-toolkit** | [aeriondyseti/dev-toolkit](https://github.com/aeriondyseti/dev-toolkit) | Serena, Context7, and RepoMap MCP servers plus git workflow skills and `/dev:*` commands |
