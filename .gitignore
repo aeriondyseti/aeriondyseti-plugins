@@ -2,8 +2,7 @@ node_modules/
 .DS_Store
 *.local.md
 .vector-memory/
-.serena/cache/
-.serena/project.local.yml
+.serena/
 
 # Local-only Claude Code state
 .claude/settings.local.json
